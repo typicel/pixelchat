@@ -11,6 +11,9 @@
 		372CA20029D104D200AC5052 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CA1FF29D104D200AC5052 /* ContentView.swift */; };
 		372CA20229D104D500AC5052 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 372CA20129D104D500AC5052 /* Assets.xcassets */; };
 		372CA20529D104D500AC5052 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 372CA20429D104D500AC5052 /* Preview Assets.xcassets */; };
+		372CA20C29D1053400AC5052 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CA20B29D1053400AC5052 /* Room.swift */; };
+		372CA20F29D1326600AC5052 /* RoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CA20E29D1326600AC5052 /* RoomView.swift */; };
+		372CA21129D133AD00AC5052 /* RoomManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372CA21029D133AD00AC5052 /* RoomManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +22,10 @@
 		372CA1FF29D104D200AC5052 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		372CA20129D104D500AC5052 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		372CA20429D104D500AC5052 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		372CA20B29D1053400AC5052 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		372CA20D29D1083000AC5052 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		372CA20E29D1326600AC5052 /* RoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomView.swift; sourceTree = "<group>"; };
+		372CA21029D133AD00AC5052 /* RoomManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,10 +58,12 @@
 		372CA1FC29D104D200AC5052 /* pictochat */ = {
 			isa = PBXGroup;
 			children = (
+				372CA20D29D1083000AC5052 /* Info.plist */,
 				372CA1FD29D104D200AC5052 /* pictochatApp.swift */,
-				372CA1FF29D104D200AC5052 /* ContentView.swift */,
+				378D6D8E29D260B6005F89C9 /* Views */,
 				372CA20129D104D500AC5052 /* Assets.xcassets */,
 				372CA20329D104D500AC5052 /* Preview Content */,
+				378D6D9029D260C7005F89C9 /* Rooms */,
 			);
 			path = pictochat;
 			sourceTree = "<group>";
@@ -65,6 +74,24 @@
 				372CA20429D104D500AC5052 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		378D6D8E29D260B6005F89C9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				372CA1FF29D104D200AC5052 /* ContentView.swift */,
+				372CA20E29D1326600AC5052 /* RoomView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		378D6D9029D260C7005F89C9 /* Rooms */ = {
+			isa = PBXGroup;
+			children = (
+				372CA20B29D1053400AC5052 /* Room.swift */,
+				372CA21029D133AD00AC5052 /* RoomManager.swift */,
+			);
+			path = Rooms;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +165,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				372CA20029D104D200AC5052 /* ContentView.swift in Sources */,
+				372CA21129D133AD00AC5052 /* RoomManager.swift in Sources */,
+				372CA20F29D1326600AC5052 /* RoomView.swift in Sources */,
 				372CA1FE29D104D200AC5052 /* pictochatApp.swift in Sources */,
+				372CA20C29D1053400AC5052 /* Room.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +299,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"pictochat/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = pictochat/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -297,6 +328,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"pictochat/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = pictochat/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

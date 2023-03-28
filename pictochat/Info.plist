@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_A._tcp</string>
+		<string>_A._udp</string>
+		<string>_B._tcp</string>
+		<string>_B._udp</string>
+		<string>_C._tcp</string>
+		<string>_C._udp</string>
+		<string>_D._udp</string>
+		<string>_D._tcp</string>
+	</array>
+</dict>
+</plist>
