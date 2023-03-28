@@ -7,10 +7,10 @@ import MultipeerConnectivity
 import os
 import PencilKit
 
-struct Message {
-    let displayName: String
+struct Message: Identifiable{
+    let id = UUID()
     let peerId: MCPeerID
-    let content: String
+    let drawing: PKDrawing
 }
 
 class Room: NSObject, ObservableObject {
@@ -46,7 +46,7 @@ class Room: NSObject, ObservableObject {
     }
     
     @Published var connectedPeers: [MCPeerID] = []
-    @Published var messageHistory: [(PKDrawing, MCPeerID)] = []
+    @Published var messageHistory: [Message] = []
     
     func send(message: String) {
         log.info("send: sending \"\(message)\" to \(self.session.connectedPeers.count) peers")
@@ -54,15 +54,25 @@ class Room: NSObject, ObservableObject {
         if !session.connectedPeers.isEmpty {
             do {
                 try session.send(message.data(using: .utf8)!, toPeers: session.connectedPeers, with: .reliable)
-//                let decoder = JSONDecoder()
-//                let drawing = decoder.decode(PKDrawing.self, from: Data())
-//                messageHistory.append((drawing, self.myPeerId))
+                let decoder = JSONDecoder()
+                if let data = message.data(using: .utf8) {
+                    let drawing = try decoder.decode(PKDrawing.self, from: data)
+                    messageHistory.append(Message(peerId: self.myPeerId, drawing: drawing))
+                }
             } catch {
                 log.error("Error for sending: \(String(describing: error))")
             }
+            
         } else {
-            // if no peers, then just append message to history
-//            messageHistory.append((message, self.myPeerId))
+            let decoder = JSONDecoder()
+            do {
+                if let data = message.data(using: .utf8) {
+                    let drawing = try decoder.decode(PKDrawing.self, from: data)
+                    messageHistory.append(Message(peerId: self.myPeerId, drawing: drawing))
+                }
+            } catch {
+                log.error("Error decoding")
+            }
         }
     }
     
@@ -123,7 +133,7 @@ extension Room: MCSessionDelegate {
             let message = String(data: data, encoding: .utf8)
             let decoder = JSONDecoder()
             let drawing = try decoder.decode(PKDrawing.self, from: data)
-            messageHistory.append((drawing, peerID))
+            messageHistory.append(Message(peerId: peerID, drawing: drawing))
             log.info("Received message in room \(self.roomId): \(String(describing: message))")
         } catch {
             log.error("Error receiving message in room \(self.roomId)")

@@ -12,7 +12,6 @@ struct RoomView: View {
     @ObservedObject var room: Room
     
     @State private var message = ""
-    @State private var drawing = PKDrawing()
     
     let canvasView = PKCanvasViewRepresentable()
     
@@ -33,18 +32,20 @@ struct RoomView: View {
             Text("Room \(room.roomId)")
                 .font(.title)
             
-            ForEach(room.messageHistory, id: \.1) { drawing, peer in
-                HStack {
-                    Text("\(peer.displayName): ")
-                    Image(uiImage: drawing.image(from: drawing.bounds, scale: UIScreen.main.scale))
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
+            ScrollView {
+                ForEach(room.messageHistory) { message in
+                    HStack {
+                        Text("\(message.peerId.displayName): ")
+                        Image(uiImage: message.drawing.image(from: message.drawing.bounds, scale: UIScreen.main.scale))
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    }
                 }
             }
             
             Spacer()
             
-            
+            // Drawing section
             ZStack {
                 Rectangle()
                     .size(width: 200, height: 200)
@@ -62,12 +63,6 @@ struct RoomView: View {
             Button("Send") {
                 encodeAndSend()
                 canvasView.canvas.drawing = PKDrawing()
-                
-//                room.send(message: message)
-//                message = ""
-//
-//                let encoder = JSONEncoder()
-//                let data = try encoder.encode(canvasView.drawing)
             }
             
         } .padding()
